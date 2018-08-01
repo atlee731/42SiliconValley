@@ -1,0 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alee <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/30 14:24:03 by alee              #+#    #+#             */
+/*   Updated: 2018/07/30 14:47:11 by alee             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
+#incldue <stdio.h>
+
+void	ft_putchar(char c);
+void	ft_putnbr(int nb);
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int nb)
+{
+	int i;
+	int len;
+	int n;
+	char *str;
+
+	str = NULL;
+	i = 0;
+	len = 0;
+	n = nb;
+	while (n != 0)
+	{
+		len++;
+		n /= 10;
+	}
+	while (i < len)
+	{
+		str[len - i - 1] = (nb % 10) + '0';
+		nb = nb / 10;
+	}
+	while (*str)
+	{
+		ft_putchar(*str++);
+	}
+}
+
+int		main(void)
+{
+	ft_putnbr(4242);
+}
